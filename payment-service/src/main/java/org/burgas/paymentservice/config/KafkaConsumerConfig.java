@@ -23,8 +23,7 @@ public class KafkaConsumerConfig {
                 ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
                 JsonDeserializer.TYPE_MAPPINGS,
-                "org.burgas.subscriptionservice.dto.PaymentRequest:" +
-                "org.burgas.paymentservice.dto.PaymentRequest"
+                "org.burgas.subscriptionservice.dto.PaymentRequest:org.burgas.paymentservice.dto.PaymentRequest"
         );
     }
 

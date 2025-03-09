@@ -26,7 +26,7 @@ public class PaymentMapper {
         this.restClientHandler = restClientHandler;
     }
 
-    public Payment toPaymentCreate(final PaymentRequest paymentRequest) {
+    public void toPaymentCreate(final PaymentRequest paymentRequest) {
         Payment payment = Payment.builder()
                 .identityId(paymentRequest.identityId())
                 .subscriptionId(paymentRequest.subscriptionId())
@@ -40,8 +40,6 @@ public class PaymentMapper {
                 UUID.randomUUID(),
                 payment.getIdentityId()
         );
-
-        return payment;
     }
 
     public PaymentResponse toPaymentResponse(final Payment payment, final String authentication) {

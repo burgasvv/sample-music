@@ -16,7 +16,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query(
             nativeQuery = true,
             value = """
-                    insert into identity_payment_token(identity_id, payment_id, token) VALUES (:identityId, :paymentId, :token)
+                    insert into identity_payment_token(identity_id, payment_id, token) VALUES (?3, ?1, ?2)
                     """
     )
     void createPaymentIdentityToken(Long paymentId, UUID token, Long identityId);
