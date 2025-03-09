@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodePersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit moduleName="database-server" name="Default">
+        <packages>
+          <package value="org.burgas.databaseserver" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="identity-server" name="Default">
+        <packages>
+          <package value="org.burgas.identityserver" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="image-service" name="Default">
+        <packages>
+          <package value="org.burgas.imageservice" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="producer-service" name="Default">
+        <packages>
+          <package value="org.burgas.producerservice" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="sound-service" name="Default">
+        <packages>
+          <package value="org.burgas.soundservice" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="subscription-service" name="Default">
+        <packages>
+          <package value="org.burgas.subscriptionservice" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>

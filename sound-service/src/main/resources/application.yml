@@ -1,0 +1,28 @@
+server:
+  port: 9030
+spring:
+  application:
+    name: sound-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        use_sql_comments: true
+        format_sql: true
+        highlight_sql: true
+  servlet:
+    multipart:
+      max-request-size: 1000MB
+      max-file-size: 1000MB
+springdoc:
+  api-docs:
+    path: /sound-service/v3/api-docs
+  swagger-ui:
+    path: /sound-service/swagger-ui.html

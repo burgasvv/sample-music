@@ -1,0 +1,347 @@
+### Authentication Requests
+
+
+
+###
+GET http://localhost:8765/authentication/principal
+
+###
+GET http://localhost:8765/authentication/csrf-token
+Authorization: Basic admin admin
+
+
+
+### Authority Requests
+
+
+
+###
+GET http://localhost:8765/authorities/all
+Authorization: Basic admin admin
+
+###
+GET http://localhost:8765/authorities/by-id?authorityId=1
+Authorization: Basic admin admin
+
+###
+POST http://localhost:8765/authorities/create
+Content-Type: application/json
+Authorization: Basic admin admin
+
+{
+  "name": "ROLE_MODER"
+}
+
+###
+POST http://localhost:8765/authorities/update
+Content-Type: application/json
+Authorization: Basic admin admin
+
+{
+  "id": 4,
+  "name": "ROLE_MODERATOR"
+}
+
+
+
+
+### Identity Requests
+
+
+
+###
+GET http://localhost:8765/identities/all
+Authorization: Basic admin admin
+
+###
+GET http://localhost:8765/identities/by-id?identityId=1
+Authorization: Basic admin admin
+
+###
+GET http://localhost:8765/identities/by-username?username=producer
+Authorization: Basic producer producer
+
+###
+POST http://localhost:8765/identities/create
+Content-Type: application/json
+
+
+{
+  "username": "burgasvv",
+  "password": "cg3audio",
+  "email": "burgasvv@gmail.com",
+  "authorityId": 2
+}
+
+###
+POST http://localhost:8765/identities/update
+Content-Type: application/json
+Authorization: Basic burgasvv cg3audio
+
+{
+  "id": 4,
+  "username": "burgvv",
+  "email": "burgvv@gmail.com",
+  "authorityId": 2
+}
+
+###
+DELETE http://localhost:8765/identities/delete?identityId=4
+Authorization: Basic burgvv cg3audio
+
+
+
+### Label Requests
+
+
+
+###
+GET http://localhost:8765/labels/all
+Authorization: Basic admin admin
+
+###
+GET http://localhost:8765/labels/by-id?labelId=1
+Authorization: Basic admin admin
+
+###
+GET http://localhost:8765/labels/by-title?title=Anthology
+Authorization: Basic admin admin
+
+###
+POST http://localhost:8765/labels/create
+Authorization: Basic producer producer
+Content-Type: application/json
+
+{
+  "title": "Anthology",
+  "description": "New Anthology label description",
+  "bossId": 1
+}
+
+###
+POST http://localhost:8765/labels/update
+Authorization: Basic producer producer
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Anthology Next",
+  "bossId": 1
+}
+
+###
+DELETE http://localhost:8765/labels/delete?labelId=1
+Authorization: Basic producer producer
+
+
+
+### Producer Requests
+
+
+
+###
+GET http://localhost:8765/producers/all
+Authorization: Basic producer producer
+
+###
+GET http://localhost:8765/producers/by-id?producerId=1
+Authorization: Basic producer producer
+
+###
+GET http://localhost:8765/producers/by-identity?identityId=2
+Authorization: Basic admin admin
+
+###
+POST http://localhost:8765/producers/create
+Authorization: Basic producer producer
+Content-Type: application/json
+
+{
+  "nickname": "BestProducer",
+  "firstname": "Вадимов",
+  "lastname": "Игорь",
+  "patronymic": "Кирилович",
+  "phone": "9139035373",
+  "about": "New description about BestProducer",
+  "identityId": 2
+}
+
+###
+POST http://localhost:8765/producers/update
+Authorization: Basic producer producer
+Content-Type: application/json
+
+{
+  "id": 2,
+  "nickname": "BestProducer EDITED",
+  "firstname": "Вадимов EDITED",
+  "lastname": "Игорь EDITED",
+  "patronymic": "Кирилович EDITED",
+  "identityId": 2
+}
+
+###
+DELETE http://localhost:8765/producers/delete?producerId=1
+Authorization: Basic producer producer
+
+
+
+### Plan Requests
+
+
+
+###
+GET http://localhost:8765/plans/by-id?planId=1
+
+###
+GET http://localhost:8765/plans/by-type?type=user
+
+###
+GET http://localhost:8765/plans/by-period-type?period=monthly&type=producer
+
+###
+POST http://localhost:8765/plans/create
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "name": "New Plan For Producer",
+  "price": 600,
+  "period": "Annual",
+  "scores": 15000,
+  "type": "producer"
+}
+
+###
+POST http://localhost:8765/plans/update
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "id": 13,
+  "name": "New Plan For Producer EDITED",
+  "price": 550,
+  "scores": 14000
+}
+
+###
+DELETE http://localhost:8765/plans/delete?planId=13
+Authorization: Basic admin admin
+
+
+
+### Subscription Requests
+
+
+
+###
+POST http://localhost:8765/subscriptions/subscribe
+Authorization: Basic burgasvv cg3audio
+Content-Type: application/json
+
+{
+  "planId": 3,
+  "identityId": 4
+}
+
+###
+POST http://localhost:8765/subscriptions/cancel-subscription?identityId=2
+Authorization: Basic producer producer
+
+###
+POST http://localhost:8765/subscriptions/restore-subscription?identityId=2
+Authorization: Basic producer producer
+
+
+
+### Discount Requests
+
+###
+POST http://localhost:8765/discounts/create
+Content-Type: application/json
+Authorization: Basic admin admin
+
+{
+  "name": "New Discount",
+  "description": "New discount description",
+  "percentage": 20,
+  "starts": "2025-03-08",
+  "ends": "2025-03-15",
+  "planIds": [1,4,6]
+}
+
+
+
+### Sound Requests
+
+
+
+###
+GET http://localhost:8765/genres/by-id?genreId=2
+
+###
+GET http://localhost:8765/genres/by-name?name=Soul
+
+###
+POST http://localhost:8765/genres/create
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "name": "Afro Soul",
+  "description": "New Afro Soul description"
+}
+
+###
+POST http://localhost:8765/genres/update
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "id": 25,
+  "name": "Afro Soul EDITED"
+}
+
+###
+DELETE http://localhost:8765/genres/delete?genreId=25
+Authorization: Basic admin admin
+
+
+
+### Pack Requests
+
+
+
+###
+GET http://localhost:8765/packs/all
+
+###
+POST http://localhost:8765/packs/create?labelId=1
+Content-Type: application/json
+Authorization: Basic producer producer
+
+{
+  "title": "Neo Soul R&B",
+  "description": "Neo soul R&B new description for this pack",
+  "genreId": 2,
+  "labelId": 1
+}
+
+
+
+### Sample Requests
+
+
+
+###
+GET http://localhost:8765/samples/by-pack?packId=1
+
+
+
+### Payment Requests
+
+
+
+###
+GET http://localhost:8765/payments/by-id?paymentId=1
+Authorization: Basic producer producer
