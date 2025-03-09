@@ -66,8 +66,7 @@ public final class ProducerMapper {
                                             .build()
                             );
                             producerRepository.updateIdentityBySettingAuthorityId(2L, producer.getIdentityId());
-                            producerRepository
-                                    .createProducerIdentityToken(
+                            producerRepository.createProducerIdentityToken(
                                             producer.getId(),
                                             UUID.randomUUID(),
                                             producer.getIdentityId()

@@ -26,20 +26,14 @@ public class PaymentMapper {
         this.restClientHandler = restClientHandler;
     }
 
-    public void toPaymentCreate(final PaymentRequest paymentRequest) {
+    public Payment toPaymentCreate(final PaymentRequest paymentRequest) {
         Payment payment = Payment.builder()
                 .identityId(paymentRequest.identityId())
                 .subscriptionId(paymentRequest.subscriptionId())
                 .price(paymentRequest.price())
                 .paidAt(LocalDateTime.now())
                 .build();
-        payment = paymentRepository.save(payment);
-
-        paymentRepository.createPaymentIdentityToken(
-                payment.getId(),
-                UUID.randomUUID(),
-                payment.getIdentityId()
-        );
+        return paymentRepository.save(payment);
     }
 
     public PaymentResponse toPaymentResponse(final Payment payment, final String authentication) {

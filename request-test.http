@@ -153,17 +153,17 @@ Authorization: Basic admin admin
 
 ###
 POST http://localhost:8765/producers/create
-Authorization: Basic producer producer
+Authorization: Basic user user
 Content-Type: application/json
 
 {
-  "nickname": "BestProducer",
-  "firstname": "Вадимов",
-  "lastname": "Игорь",
-  "patronymic": "Кирилович",
-  "phone": "9139035373",
-  "about": "New description about BestProducer",
-  "identityId": 2
+  "nickname": "NewTestProducer",
+  "firstname": "Кирьянов",
+  "lastname": "Валерий",
+  "patronymic": "Гаврилович",
+  "phone": "9139567826",
+  "about": "New description about NewTestProducer",
+  "identityId": 3
 }
 
 ###
@@ -173,11 +173,11 @@ Content-Type: application/json
 
 {
   "id": 2,
-  "nickname": "BestProducer EDITED",
-  "firstname": "Вадимов EDITED",
-  "lastname": "Игорь EDITED",
-  "patronymic": "Кирилович EDITED",
-  "identityId": 2
+  "nickname": "NewTestProducerEDITED",
+  "firstname": "КирьяновEDITED",
+  "lastname": "ВалерийEDITED",
+  "patronymic": "Гаврилович",
+  "identityId": 3
 }
 
 ###
