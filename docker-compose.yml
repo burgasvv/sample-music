@@ -61,6 +61,7 @@ services:
       - postgres
       - zookeeper
       - kafka
+      - database-server
     environment:
       SPRING_DATASOURCE-URL: jdbc:postgresql://localhost:5432/postgres
 
@@ -74,6 +75,8 @@ services:
       - postgres
       - zookeeper
       - kafka
+      - database-server
+      - identity-server
     environment:
       SPRING_DATASOURCE-URL: jdbc:postgresql://localhost:5432/postgres
 
@@ -87,6 +90,9 @@ services:
       - postgres
       - zookeeper
       - kafka
+      - database-server
+      - identity-server
+      - image-service
     environment:
       SPRING_DATASOURCE-URL: jdbc:postgresql://localhost:5432/postgres
 
@@ -100,6 +106,10 @@ services:
       - postgres
       - zookeeper
       - kafka
+      - database-server
+      - identity-server
+      - image-service
+      - payment-service
     environment:
       SPRING_DATASOURCE-URL: jdbc:postgresql://localhost:5432/postgres
 
@@ -113,6 +123,11 @@ services:
       - postgres
       - zookeeper
       - kafka
+      - database-server
+      - identity-server
+      - image-service
+      - payment-service
+      - producer-service
     environment:
       SPRING_DATASOURCE-URL: jdbc:postgresql://localhost:5432/postgres
 
@@ -126,5 +141,11 @@ services:
       - postgres
       - zookeeper
       - kafka
+      - database-server
+      - identity-server
+      - image-service
+      - payment-service
+      - producer-service
+      - sound-service
     environment:
       SPRING_DATASOURCE-URL: jdbc:postgresql://localhost:5432/postgres
