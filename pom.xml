@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>org.burgas</groupId>
+    <artifactId>sample-music</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>sample-music</name>
+    <description>sample-music</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>database-server</module>
+        <module>identity-server</module>
+        <module>image-service</module>
+        <module>payment-service</module>
+        <module>producer-service</module>
+        <module>sound-service</module>
+        <module>subscription-service</module>
+    </modules>
+</project>

@@ -4,8 +4,10 @@ import org.burgas.paymentservice.dto.IdentityResponse;
 import org.burgas.paymentservice.dto.PaymentRequest;
 import org.burgas.paymentservice.dto.PaymentResponse;
 import org.burgas.paymentservice.dto.SubscriptionResponse;
+import org.burgas.paymentservice.entity.IdentityPaymentToken;
 import org.burgas.paymentservice.entity.Payment;
 import org.burgas.paymentservice.handler.RestClientHandler;
+import org.burgas.paymentservice.repository.IdentityPaymentTokenRepository;
 import org.burgas.paymentservice.repository.PaymentRepository;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +22,15 @@ public class PaymentMapper {
 
     private final PaymentRepository paymentRepository;
     private final RestClientHandler restClientHandler;
+    private final IdentityPaymentTokenRepository identityPaymentTokenRepository;
 
-    public PaymentMapper(PaymentRepository paymentRepository, RestClientHandler restClientHandler) {
+    public PaymentMapper(
+            PaymentRepository paymentRepository, RestClientHandler restClientHandler,
+            IdentityPaymentTokenRepository identityPaymentTokenRepository
+    ) {
         this.paymentRepository = paymentRepository;
         this.restClientHandler = restClientHandler;
+        this.identityPaymentTokenRepository = identityPaymentTokenRepository;
     }
 
     public Payment toPaymentCreate(final PaymentRequest paymentRequest) {
@@ -33,7 +40,15 @@ public class PaymentMapper {
                 .price(paymentRequest.price())
                 .paidAt(LocalDateTime.now())
                 .build();
-        return paymentRepository.save(payment);
+        payment = paymentRepository.save(payment);
+        identityPaymentTokenRepository.save(
+                IdentityPaymentToken.builder()
+                        .identityId(payment.getIdentityId())
+                        .paymentId(payment.getId())
+                        .token(UUID.randomUUID())
+                        .build()
+        );
+        return payment;
     }
 
     public PaymentResponse toPaymentResponse(final Payment payment, final String authentication) {
