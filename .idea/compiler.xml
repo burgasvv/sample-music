@@ -2,29 +2,25 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Annotation profile for sound-service" enabled="true">
+      <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.3/spring-boot-configuration-processor-3.4.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.3/spring-boot-configuration-processor-3.4.3.jar" />
-        </processorPath>
-        <module name="database-server" />
-        <module name="sound-service" />
-        <module name="producer-service" />
-        <module name="image-service" />
       </profile>
-      <profile name="Annotation profile for payment-service" enabled="true">
+      <profile name="Annotation profile for sample-music" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.3/spring-boot-configuration-processor-3.4.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.4.3/spring-boot-configuration-processor-3.4.3.jar" />
         </processorPath>
-        <module name="identity-server" />
         <module name="payment-service" />
         <module name="subscription-service" />
+        <module name="producer-service" />
+        <module name="database-server" />
+        <module name="sound-service" />
+        <module name="image-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
