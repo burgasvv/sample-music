@@ -17,6 +17,12 @@ spring:
         format_sql: true
         use_sql_comments: true
         highlight_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+  data:
+    jdbc:
+      dialect: postgresql
 springdoc:
   api-docs:
     path: /subscription-service/v3/api-docs

@@ -17,10 +17,16 @@ spring:
         use_sql_comments: true
         format_sql: true
         highlight_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
   servlet:
     multipart:
       max-request-size: 1000MB
       max-file-size: 1000MB
+  data:
+    jdbc:
+      dialect: postgresql
 springdoc:
   api-docs:
     path: /sound-service/v3/api-docs
