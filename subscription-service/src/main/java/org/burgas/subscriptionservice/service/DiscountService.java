@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.ofPlatform;
 import static org.burgas.subscriptionservice.entity.DiscountMessage.OLD_DISCOUNT_NOT_FOUND;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 @Service
@@ -58,7 +58,7 @@ public class DiscountService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = REPEATABLE_READ, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public Long createDiscount(final DiscountRequest discountRequest) {
@@ -77,7 +77,7 @@ public class DiscountService {
                         }
                 );
 
-        ofPlatform().start(
+        CompletableFuture.runAsync(
                 () -> {
                     try {
                         long days = ChronoUnit.DAYS.between(discount.getStarts(), discount.getEnds());

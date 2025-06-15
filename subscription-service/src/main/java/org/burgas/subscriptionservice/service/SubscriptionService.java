@@ -20,7 +20,7 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import static org.burgas.subscriptionservice.entity.PlanMessage.PLAN_NOT_FOUND;
 import static org.burgas.subscriptionservice.entity.SubscriptionMessage.*;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 @Service
@@ -71,7 +71,7 @@ public class SubscriptionService {
 
     @SuppressWarnings("UnusedReturnValue")
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = REPEATABLE_READ, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public Long createOrUpdate(final SubscriptionRequest subscriptionRequest, String authentication) {
@@ -130,7 +130,7 @@ public class SubscriptionService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = REPEATABLE_READ, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public String cancelSubscription(Long identityId, String authentication) {
@@ -145,7 +145,7 @@ public class SubscriptionService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = REPEATABLE_READ, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public String restoreSubscription(Long identityId, String authentication) {

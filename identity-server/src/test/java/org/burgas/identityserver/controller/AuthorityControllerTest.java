@@ -1,7 +1,10 @@
 package org.burgas.identityserver.controller;
 
 import org.intellij.lang.annotations.Language;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 class AuthorityControllerTest {
 
     MockMvc mockMvc;
@@ -25,6 +29,7 @@ class AuthorityControllerTest {
     }
 
     @Test
+    @Order(value = 1)
     @WithMockUser(username = "admin", password = "admin", roles = {"ADMIN"})
     void getAllAuthorities() throws Exception {
         mockMvc
@@ -40,6 +45,7 @@ class AuthorityControllerTest {
     }
 
     @Test
+    @Order(value = 2)
     @WithMockUser(username = "admin", password = "admin", roles = {"ADMIN"})
     void getAuthorityById() throws Exception {
         mockMvc
@@ -59,6 +65,7 @@ class AuthorityControllerTest {
 
 
     @Test
+    @Order(value = 3)
     @WithMockUser(username = "admin", password = "admin", roles = {"ADMIN"})
     void getAuthorityByName() throws Exception {
         mockMvc
@@ -77,6 +84,7 @@ class AuthorityControllerTest {
     }
 
     @Test
+    @Order(value = 4)
     @WithMockUser(username = "admin", password = "admin", roles = {"ADMIN"})
     void updateAuthority() throws Exception {
         @Language("JSON") String content = """
@@ -100,6 +108,7 @@ class AuthorityControllerTest {
     }
 
     @Test
+    @Order(value = 5)
     @WithMockUser(username = "admin", password = "admin", roles = {"ADMIN"})
     void deleteAuthority() throws Exception {
         mockMvc

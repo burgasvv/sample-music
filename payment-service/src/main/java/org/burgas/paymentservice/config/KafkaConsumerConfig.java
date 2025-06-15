@@ -1,6 +1,5 @@
 package org.burgas.paymentservice.config;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.burgas.paymentservice.dto.PaymentRequest;
 import org.springframework.context.annotation.Bean;
@@ -12,30 +11,32 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.Map;
 
+import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
+import static org.springframework.kafka.support.serializer.JsonDeserializer.TYPE_MAPPINGS;
+
 @Configuration
 public class KafkaConsumerConfig {
 
     @Bean
     public Map<String, Object> consumerConfigs() {
         return Map.of(
-                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
-                ConsumerConfig.GROUP_ID_CONFIG, "subscription-payment-group-id",
-                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
-                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
-                JsonDeserializer.TYPE_MAPPINGS,
-                "org.burgas.subscriptionservice.dto.PaymentRequest:org.burgas.paymentservice.dto.PaymentRequest"
+                BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
+                GROUP_ID_CONFIG, "subscription-payment-group-id",
+                KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
+                VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
+                TYPE_MAPPINGS, "org.burgas.subscriptionservice.dto.PaymentRequest:org.burgas.paymentservice.dto.PaymentRequest"
         );
     }
 
     @Bean
-    public ConsumerFactory<String, PaymentRequest> identityCommunityConsumerFactory() {
+    public ConsumerFactory<String, PaymentRequest> paymentRequestConsumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, PaymentRequest> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, PaymentRequest> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(identityCommunityConsumerFactory());
+        factory.setConsumerFactory(paymentRequestConsumerFactory());
         return factory;
     }
 }

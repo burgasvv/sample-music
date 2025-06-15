@@ -15,7 +15,7 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static org.burgas.producerservice.entity.ProducerMessage.PRODUCER_DELETED;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
@@ -69,7 +69,7 @@ public class ProducerService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = REPEATABLE_READ, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public Long createOrUpdate(final ProducerRequest producerRequest, String authentication) {
@@ -88,7 +88,7 @@ public class ProducerService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = REPEATABLE_READ, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public String deleteById(Long producerId, String authentication) {

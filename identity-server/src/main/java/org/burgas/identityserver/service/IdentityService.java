@@ -19,7 +19,7 @@ import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static org.burgas.identityserver.entity.IdentityMessage.IDENTITY_DELETED;
 import static org.burgas.identityserver.entity.IdentityMessage.IDENTITY_NOT_AUTHORIZED;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
+import static org.springframework.transaction.annotation.Isolation.READ_COMMITTED;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
@@ -93,7 +93,7 @@ public class IdentityService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = READ_COMMITTED, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public Long createOrUpdate(IdentityRequest identityRequest, String authentication) {
@@ -119,7 +119,7 @@ public class IdentityService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = READ_COMMITTED, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public String deleteById(Long identityId, String authentication) {

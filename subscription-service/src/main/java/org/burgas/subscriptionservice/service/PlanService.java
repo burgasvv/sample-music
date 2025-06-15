@@ -13,7 +13,7 @@ import java.util.Objects;
 import static java.lang.String.format;
 import static org.burgas.subscriptionservice.entity.PlanMessage.PLAN_DELETED;
 import static org.burgas.subscriptionservice.entity.PlanMessage.PLAN_NOT_FOUND_WITH_ID;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
+import static org.springframework.transaction.annotation.Isolation.*;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 @Service
@@ -52,7 +52,7 @@ public class PlanService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE,
+            isolation = READ_COMMITTED,
             propagation = REQUIRED,
             rollbackFor = Exception.class
     )
@@ -63,7 +63,7 @@ public class PlanService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE,
+            isolation = READ_COMMITTED,
             propagation = REQUIRED,
             rollbackFor = Exception.class
     )

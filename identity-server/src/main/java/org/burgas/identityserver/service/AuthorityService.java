@@ -14,7 +14,7 @@ import java.util.Objects;
 import static java.lang.String.format;
 import static org.burgas.identityserver.entity.AuthorityMessage.AUTHORITY_DELETED;
 import static org.burgas.identityserver.entity.AuthorityMessage.AUTHORITY_NOT_FOUND;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
+import static org.springframework.transaction.annotation.Isolation.READ_COMMITTED;
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
@@ -53,7 +53,7 @@ public class AuthorityService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = READ_COMMITTED, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public Long createOrUpdate(final AuthorityRequest authorityRequestMono) {
@@ -63,7 +63,7 @@ public class AuthorityService {
     }
 
     @Transactional(
-            isolation = SERIALIZABLE, propagation = REQUIRED,
+            isolation = READ_COMMITTED, propagation = REQUIRED,
             rollbackFor = Exception.class
     )
     public String deleteById(Long authorityId) {
